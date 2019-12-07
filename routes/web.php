@@ -21,3 +21,9 @@ Route::get('info',function(){
 	phpinfo();
 });
 Route::get('/test/hello','Test\TestController@hello');
+Route::get('/test/adduser','Test\LoginController@adduser');
+Route::get('/test/redis1','Test\LoginController@redis1');
+Route::get('/test/redis2','Test\LoginController@redis2');
+
+Route::get('/wx','Test\LoginController@weixin');
+Route::get('wx/index','Wx\WeixinController@index');
