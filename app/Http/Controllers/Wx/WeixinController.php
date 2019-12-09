@@ -10,4 +10,9 @@ class WeixinController extends Controller
     public function weixin(){
     	echo "1905微信开发";
     }
+
+    public function  index(Request $request)
+    {
+        echo $request->echostr;
+    }
 }

@@ -26,4 +26,5 @@ Route::get('/test/redis1','Test\LoginController@redis1');
 Route::get('/test/redis2','Test\LoginController@redis2');
 
 Route::get('/wx','Test\LoginController@weixin');
-Route::get('wx/index','Wx\WeixinController@index');
+//Route::get('/wx/index','Wx\WeixinController@index');
+Route::get('/wx/index','Wx\WeixinController@index');
