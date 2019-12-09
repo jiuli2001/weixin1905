@@ -111,7 +111,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Wx/WeixinController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
@@ -119,6 +119,15 @@
               <folding>
                 <element signature="e#43#79#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -187,6 +196,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Wx/WeixinController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
       </list>
     </option>
   </component>
@@ -367,9 +377,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="967" />
+    <option name="x" value="546" />
+    <option name="y" value="38" />
     <option name="width" value="1400" />
-    <option name="height" value="970" />
+    <option name="height" value="932" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -399,23 +410,7 @@
               <item name="weixin1905" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="weixin1905" type="b2602c69:ProjectViewProjectNode" />
-              <item name="weixin1905" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="weixin1905" type="b2602c69:ProjectViewProjectNode" />
-              <item name="weixin1905" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Wx" type="462c0819:PsiDirectoryNode" />
+              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="weixin1905" type="b2602c69:ProjectViewProjectNode" />
@@ -492,15 +487,15 @@
       <workItem from="1575603082556" duration="157000" />
       <workItem from="1575603240554" duration="16963000" />
       <workItem from="1575852441219" duration="675000" />
-      <workItem from="1575857145500" duration="3898000" />
+      <workItem from="1575857145500" duration="5760000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21777000" />
+    <option name="totallyTimeSpent" value="23639000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="774" y="0" width="1120" height="776" extended-state="0" />
+    <frame x="437" y="31" width="1120" height="745" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2777778" />
@@ -614,6 +609,13 @@
           <folding>
             <element signature="e#43#79#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
         </state>
       </provider>
     </entry>
