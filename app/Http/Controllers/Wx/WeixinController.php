@@ -36,7 +36,7 @@ class WeixinController extends Controller
     }
 
     public function receiv(){
-        $log_file = "weixin.log";
+        $log_file = "wx.log";
         $xml=file_get_contents("php://input");
         $data =date('Y-m-d H:i:s '). $xml;
         file_put_contents($log_file,$data,FILE_APPEND);
