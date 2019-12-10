@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\WeiXin;
+namespace App\Http\Controllers\Wx;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class WxController extends Controller
+class WeixinController extends Controller
 {
     protected $access_token;
 
