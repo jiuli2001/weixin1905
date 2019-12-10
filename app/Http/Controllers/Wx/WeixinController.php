@@ -11,11 +11,8 @@ class WeixinController extends Controller
     	echo "1905微信开发";
     }
 
-    public function  index(Request $request)
-    {
-        echo $request->echostr;
-    }
-    public function wechat()
+
+    public function index()
     {
         $token = 'echostr';       //开发提前设置好的 token
         $signature = $_GET["signature"];

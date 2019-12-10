@@ -102,11 +102,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="29" column="44" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="44" />
+              <caret line="29" column="50" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="50" />
               <folding>
                 <element signature="e#7#389#0#PHP" expanded="true" />
               </folding>
@@ -114,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Wx/WeixinController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+            <state relative-caret-position="285">
+              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding>
                 <element signature="e#43#79#0#PHP" expanded="true" />
               </folding>
@@ -198,8 +198,8 @@
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Wx/WeixinController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Wx/WeixinController.php" />
       </list>
     </option>
   </component>
@@ -379,9 +379,9 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="371" />
-    <option name="y" value="30" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="376" />
+    <option name="y" value="85" />
     <option name="width" value="1392" />
     <option name="height" value="932" />
   </component>
@@ -490,15 +490,15 @@
       <workItem from="1575603082556" duration="157000" />
       <workItem from="1575603240554" duration="16963000" />
       <workItem from="1575852441219" duration="675000" />
-      <workItem from="1575857145500" duration="7535000" />
+      <workItem from="1575857145500" duration="11443000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25414000" />
+    <option name="totallyTimeSpent" value="29322000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="297" y="24" width="1113" height="745" extended-state="0" />
+    <frame x="301" y="68" width="1113" height="745" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27962086" />
@@ -598,16 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Wx/WeixinController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-          <folding>
-            <element signature="e#43#79#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -618,9 +608,19 @@
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="29" column="44" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="44" />
+          <caret line="29" column="50" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="50" />
           <folding>
             <element signature="e#7#389#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Wx/WeixinController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="e#43#79#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
