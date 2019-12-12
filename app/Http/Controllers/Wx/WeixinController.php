@@ -8,43 +8,47 @@ use App\Model\WxUserModel;
 
 class WeixinController extends Controller
 {
-
     protected $access_token;
+
     public function __construct()
     {
-        //获取 access_token
-        $this->access_token = $this->getAccessToken();
+        //获取sccess_token
+        $this->access_token = $this->GetAccessToken();
     }
-    protected function getAccessToken()
-    {
+
+    public function GetAccessToken(){
         $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WX_APPID').'&secret='.env('WX_APPSECREET');
         $data_json = file_get_contents($url);
         $arr = json_decode($data_json,true);
         return $arr['access_token'];
     }
-    /**
-     * 处理接入
-     */
-    public function wechat()
-    {
-        $token = '2259b56f5898cd6192c50';       //开发提前设置好的 token
+
+    //接入微信
+    public function wx(){
+        $token='8764653498654549652398465';
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
-        $echostr = $_GET["echostr"];
+        $echostr=$_GET['echostr'];
+
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
         $tmpStr = sha1( $tmpStr );
-        if( $tmpStr == $signature ){        //验证通过
+
+
+
+        if($tmpStr == $signature){
             echo $echostr;
         }else{
-            die("not ok");
+            die('not ok');
         }
+
     }
-    /**
-     * 接收微信推送事件
-     */
+
+    /*
+   * 接收微信推送事件
+   */
     public function receiv()
     {
         $log_file = "wx.log";       // public
