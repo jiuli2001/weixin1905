@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Wx;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\WxUserModel;
+
 class WeixinController extends Controller
 {
     protected $access_token;
@@ -24,7 +25,7 @@ class WeixinController extends Controller
 
     //接入微信
     public function wx(){
-        $token='2259b56f5898cd6192c50d338723d9e4';
+        $token='8764653498654549652398465';
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -34,6 +35,7 @@ class WeixinController extends Controller
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
         $tmpStr = sha1( $tmpStr );
+
 
 
         if($tmpStr == $signature){
@@ -60,17 +62,25 @@ class WeixinController extends Controller
         $event = $xml_obj->Event;  //获取事件7类型 是不是关注
         if($event=='subscribe'){
             $oppenid = $xml_obj->FromUserName;      //获取用户的oppenid
-            $user_data=[
-                'oppenid' =>$oppenid,
-                'sub_time' =>$xml_obj->createTime,
-            ];
-            //openid 入库
-            $uid=WxUserModel::insertGetId($user_data);
-            var_dump($uid);
-            die;
+            //判断用户是否已存在
+            $u = WxUserModel::where(['oppenid'=>$oppenid])->first();
+            if ($u){
+                //TODO 欢迎回来
+                echo "欢迎回来";die;
+            }else{
+                $user_data = [
+                    'oppenid' => $oppenid,               //获取用户的openid
+                    'sub_time' => $xml_obj->CreateTime,  //关注时间
+
+                ];
+                //用户入库
+                $uid= WxUserModel::insertGetId($user_data);
+                var_dump($uid);die;
+            }
+
 
             //获取用户信息
-            $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&oppenid='.$oppenid.'&lang=zh_CN';
+            $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$oppenid.'&lang=zh_CN';
             $user_info = file_get_contents($url);
             file_put_contents('wx.user.log',$user_info,FILE_APPEND);
         }
@@ -103,6 +113,8 @@ class WeixinController extends Controller
         $log_file = 'wx.user.log';
         file_put_contents($log_file,$json_str,FILE_APPEND);
     }
+
+
 
 
 
