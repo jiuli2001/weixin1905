@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Wx;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Model\WxUserModel;
 class WeixinController extends Controller
 {
     protected $access_token;
@@ -60,9 +60,17 @@ class WeixinController extends Controller
         $event = $xml_obj->Event;  //获取事件7类型 是不是关注
         if($event=='subscribe'){
             $oppenid = $xml_obj->FromUserName;      //获取用户的oppenid
+            $user_data=[
+                'oppenid' =>$oppenid,
+                'sub_time' =>$xml_obj->createTime,
+            ];
+            //openid 入库
+            $uid=WxUserModel::insertGetId($user_data);
+            var_dump($uid);
+            die;
 
             //获取用户信息
-            $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$oppenid.'&lang=zh_CN';
+            $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&oppenid='.$oppenid.'&lang=zh_CN';
             $user_info = file_get_contents($url);
             file_put_contents('wx.user.log',$user_info,FILE_APPEND);
         }
