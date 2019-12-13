@@ -338,3 +338,13 @@
 <EventKey><![CDATA[]]></EventKey>
 </xml>
 
+2019-12-12 16:42:10>>>>>>
+<xml>
+<ToUserName><![CDATA[gh_7c673baa4190]]></ToUserName>
+<FromUserName><![CDATA[oBigBtwnkUL6DlviDSa946XZX3vw]]></FromUserName>
+<CreateTime>1576140107</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+

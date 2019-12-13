@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    蛟龙本就水中盘，王道本就比天难
+                    天上下雨地上滑，自己跌倒自己爬
                 </div>
 
                 <div class="links">

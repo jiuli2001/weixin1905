@@ -129,4 +129,13 @@ class WeixinController extends Controller
         $log_file = 'wx_user.log';
         file_put_contents($log_file,$json_str,FILE_APPEND);
     }
+
+
+    /**
+     * 获取素材
+     */
+    public function getMedia(){
+        $media_id='';
+        $url='https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access_token.'&media_id='.$media_id;
+    }
 }
