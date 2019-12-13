@@ -134,8 +134,16 @@ class WeixinController extends Controller
     /**
      * 获取素材
      */
-    public function getMedia(){
-        $media_id='';
-        $url='https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access_token.'&media_id='.$media_id;
+
+
+    public function getMedia()
+    {
+        $media_id = 'LsQfuUD9FHX2YHU0b12klYWb-ROKllTASw6ToClSCWG4MRNieqj95LDoA3muVelv';
+        $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access_token.'&media_id='.$media_id;
+        //下载图片
+        $img = file_get_contents($url);
+        // 保存文件
+        file_put_contents('cat.jpg',$img);
+        echo "下载图片成功";
     }
 }
