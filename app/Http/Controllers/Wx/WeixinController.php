@@ -12,7 +12,7 @@ class WeixinController extends Controller
 
     public function __construct()
     {
-        //获取sccess_token
+        //获取sccess_token /
         $this->access_token = $this->GetAccessToken();
     }
 
