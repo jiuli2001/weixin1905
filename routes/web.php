@@ -30,3 +30,4 @@ Route::get('/test/baidu','Test\TestController@baidu');
 //Route::get('/wx/index','Wx\WeixinController@index');
 Route::get('/wx','Wx\WeixinController@wechat');
 Route::post('/wx','Wx\WeixinController@receiv');        //接收微信的推送事件
+Route::get('/wx/media','Wx\WeixinController@getMedia');

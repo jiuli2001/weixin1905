@@ -128,4 +128,14 @@ public function huifu($xml_obj, $code, $nickname)
 </xml>';
     echo $response_text;            // 回复用户消息
 }
+
+    /**
+     * 获取素材
+     */
+    public function getMedia(){
+        $media_id='7Fg9ttA_nMSj2ysKIEkK8RchQEzOARQ4lOmRqAJyc53Hyl2920V5lAursmE_A5vg';
+        $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access_token.'&media_id='.$media_id;
+        echo $url;
+    }
+
 }
