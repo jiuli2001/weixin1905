@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    天上下雨地上滑，自己跌倒自己爬
+                    Laravel
                 </div>
 
                 <div class="links">
