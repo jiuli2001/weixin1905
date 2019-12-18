@@ -244,7 +244,7 @@ class WxController extends Controller
         $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access_token.'&media_id='.$media_id;
         //获取素材内容
         $client = new Client();
-        $response = $client->request('GET',$url,JSON_UNESCAPED_UNICODE);
+        $response = $client->request('GET',$url);
         //获取文件扩展名
         $f = $response->getHeader('Content-disposition')[0];
         $extension = substr(trim($f,'"'),strpos($f,'.'));
