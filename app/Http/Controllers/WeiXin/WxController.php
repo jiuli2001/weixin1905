@@ -84,13 +84,11 @@ class WxController extends Controller
         $xml_str = file_get_contents("php://input");
         $data = date('Y-m-d H:i:s')  . ">>>>>>\n" . $xml_str . "\n\n";
         file_put_contents($log_file,$data,FILE_APPEND);     //追加写
-
         //处理xml数据
         $xml_obj = simplexml_load_string($xml_str);
-
         $event = $xml_obj->Event;       // 获取事件类型
+        $openid = $xml_obj->FromUserName;       //获取用户的openid
         if($event=='subscribe'){
-            $openid = $xml_obj->FromUserName;       //获取用户的openid
             //判断用户是否已存在
             $u = WxUserModel::where(['openid'=>$openid])->first();
             if($u){
@@ -117,10 +115,8 @@ class WxController extends Controller
                     'headimgurl'    => $u['headimgurl'],
                     'subscribe_time'    => $u['subscribe_time']
                 ];
-
                 //openid 入库
                 $uid = WxUserModel::insertGetId($user_data);
-
                 $msg = "谢谢关注";
                 //回复用户关注
                 $xml = '<xml>
@@ -132,17 +128,33 @@ class WxController extends Controller
 </xml>';
                 echo $xml;
             }
+        }elseif($event=='CLICK'){           // 菜单点击事件
+            if($xml_obj->EventKey=='weather'){
+                //如果是 获取天气
+                //请求第三方接口 获取天气
+                $weather_api = 'https://free-api.heweather.net/s6/weather/now?location=beijing&key=d957029d5931428f8eef6ba241aefdd7';
+                $weather_info = file_get_contents($weather_api);
+                $weather_info_arr = json_decode($weather_info,true);
+                $cond_txt = $weather_info_arr['HeWeather6'][0]['now']['cond_txt'];
+                $tmp = $weather_info_arr['HeWeather6'][0]['now']['tmp'];
+                $wind_dir = $weather_info_arr['HeWeather6'][0]['now']['wind_dir'];
+                $msg = $cond_txt . ' 温度： '.$tmp . ' 风向： '. $wind_dir;
+                $response_xml = '<xml>
+  <ToUserName><![CDATA['.$openid.']]></ToUserName>
+  <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
+  <CreateTime>'.time().'</CreateTime>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA['. date('Y-m-d H:i:s') .  $msg .']]></Content>
+</xml>';
+                echo $response_xml;
+            }
         }
-
         // 判断消息类型
         $msg_type = $xml_obj->MsgType;
-
         $touser = $xml_obj->FromUserName;       //接收消息的用户openid
         $fromuser = $xml_obj->ToUserName;       // 开发者公众号的 ID
         $time = time();
-
         $media_id = $xml_obj->MediaId;
-
         if($msg_type=='text'){
             $content = date('Y-m-d H:i:s') . $xml_obj->Content;
             $response_text = '<xml>
@@ -153,8 +165,6 @@ class WxController extends Controller
   <Content><![CDATA['.$content.']]></Content>
 </xml>';
             echo $response_text;            // 回复用户消息
-
-
             // TODO 消息入库
         }elseif($msg_type=='image'){    // 图片消息
             // TODO 下载图片
@@ -170,7 +180,6 @@ class WxController extends Controller
   </Image>
 </xml>';
             echo $response;
-
         }elseif($msg_type=='voice'){          // 语音消息
             // 下载语音
             $this->getMedia2($media_id,$msg_type);
@@ -184,9 +193,7 @@ class WxController extends Controller
     <MediaId><![CDATA['.$media_id.']]></MediaId>
   </Voice>
 </xml>';
-
             echo $response;
-
         }elseif($msg_type=='video'){
             // 下载小视频
             $this->getMedia2($media_id,$msg_type);
@@ -203,12 +210,8 @@ class WxController extends Controller
   </Video>
 </xml>';
             echo $response;
-
         }
-
     }
-
-
     /**
      * 获取用户基本信息
      */
@@ -220,25 +223,21 @@ class WxController extends Controller
         $log_file = 'wx_user.log';
         file_put_contents($log_file,$json_str,FILE_APPEND);
     }
-
     /**
      * 获取素材
      */
     public function getMedia()
     {
-        $media_id = 'bSkRZLnn3J2XWkWoFfF67kWb4usa9geVLSQALQ6Alv0pdS28dIiVzNNTpT10JkIR';
+        $media_id = 'MvV4Gy3hH5uSB4XJyYj1apLi-_2xVPEf4eyfg_CWpiEOjhnmIkQOZ5uvxOW1d-8D';
         $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access_token.'&media_id='.$media_id;
-
         //获取素材内容
         $data = file_get_contents($url);
         // 保存文件
         $file_name = date('YmdHis').mt_rand(11111,99999) . '.amr';
         file_put_contents($file_name,$data);
-
         echo "下载素材成功";echo '</br>';
         echo "文件名： ". $file_name;
     }
-
     protected function getMedia2($media_id,$media_type)
     {
         $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access_token.'&media_id='.$media_id;
@@ -250,7 +249,6 @@ class WxController extends Controller
         $extension = substr(trim($f,'"'),strpos($f,'.'));
         //获取文件内容
         $file_content = $response->getBody();
-
         // 保存文件
         $save_path = 'wx_media/';
         if($media_type=='image'){       //保存图片文件
@@ -264,10 +262,8 @@ class WxController extends Controller
             $file_name = date('YmdHis').mt_rand(11111,99999) . $extension;
             $save_path = $save_path . 'video/' . $file_name;
         }
-
         file_put_contents($save_path,$file_content);
     }
-
     /**
      * 刷新 access_token
      */
@@ -276,9 +272,7 @@ class WxController extends Controller
         $key = 'wx_access_token';
         Redis::del($key);
         echo $this->getAccessToken();
-
     }
-
     /**
      * 创建自定义菜单
      */
@@ -290,30 +284,17 @@ class WxController extends Controller
             'button'    => [
                 [
                     'type'  => 'click',
-                    'name'  => '1905wx',
-                    'key'   => '1905wx_key'
+                    'name'  => '获取天气',
+                    'key'   => 'weather'
                 ],
-                [
-                    'type'  => 'click',
-                    'name'  => '1905wx2',
-                    'key'   => '1905wx_key2'
-                ],
-                [
-                    'type'  => 'click',
-                    'name'  => '1905wx3',
-                    'key'   => '1905wx_key3'
-                ]
             ]
         ];
-
-        $menu_json = json_encode($menu);
+        $menu_json = json_encode($menu,JSON_UNESCAPED_UNICODE);
         $client = new Client();
         $response = $client->request('POST',$url,[
             'body'  => $menu_json
         ]);
-
         echo '<pre>';print_r($menu);echo '</pre>';
         echo $response->getBody();      //接收 微信接口的响应数据
-
     }
 }
