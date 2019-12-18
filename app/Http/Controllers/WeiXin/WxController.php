@@ -50,7 +50,6 @@ class WxController extends Controller
     }
 
 
-
     /**
      * 处理接入
      */
