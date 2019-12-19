@@ -40,6 +40,7 @@ class WxController extends Controller
         $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WX_APPID').'&secret='.env('WX_APPSECRET');
         $data_json = file_get_contents($url);
         $arr = json_decode($data_json,true);
+        var_dump($arr);die;
         Redis::set($key,$arr['access_token']);
         Redis::expire($key,3600);
         return $arr['access_token'];
@@ -288,7 +289,7 @@ class WxController extends Controller
                 [
                     'type'  => 'view',
                     'name'  => '投票',
-                    'url'   => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx86737d80f8dac5c9&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=ABCD1905#wechat_redirect'
+                    'url'   => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe74813a7b62d5527&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=ABCD1905#wechat_redirect'
                 ],
             ]
         ];
