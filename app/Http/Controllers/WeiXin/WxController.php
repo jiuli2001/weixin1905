@@ -40,7 +40,6 @@ class WxController extends Controller
         $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WX_APPID').'&secret='.env('WX_APPSECRET');
         $data_json = file_get_contents($url);
         $arr = json_decode($data_json,true);
-        var_dump($arr);die;
         Redis::set($key,$arr['access_token']);
         Redis::expire($key,3600);
         return $arr['access_token'];
@@ -87,7 +86,7 @@ class WxController extends Controller
         $openid = $xml_obj->FromUserName;       //获取用户的openid
         if($event=='subscribe'){
             //判断用户是否已存在
-            $u = WxUserModel::where(['openid'=>$openid])->first();
+            $u = WeiXinModel::where(['openid'=>$openid])->first();
             if($u){
                 $msg = '欢迎回来';
                 $xml = '<xml>
@@ -113,7 +112,7 @@ class WxController extends Controller
                     'subscribe_time'    => $u['subscribe_time']
                 ];
                 //openid 入库
-                $uid = WxUserModel::insertGetId($user_data);
+                $uid = WeiXinModel::insertGetId($user_data);
                 $msg = "谢谢关注";
                 //回复用户关注
                 $xml = '<xml>
@@ -275,8 +274,8 @@ class WxController extends Controller
      */
     public function createMenu()
     {
-        $url = 'http://wx1905.comcto.com/vote';
-        $redirect_uri = urlencode($url);        //授权后跳转页面
+        $urls ='http://wjk.xx20.top/vote';
+        $redirect_uri = urlencode($urls);        //授权后跳转页面
         //创建自定义菜单的接口地址
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->access_token;
         $menu = [
@@ -289,7 +288,7 @@ class WxController extends Controller
                 [
                     'type'  => 'view',
                     'name'  => '投票',
-                    'url'   => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe74813a7b62d5527&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=ABCD1905#wechat_redirect'
+                    'url'   => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbb1432093d0e71c4&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=ABCD1905#wechat_redirect'
                 ],
             ]
         ];
