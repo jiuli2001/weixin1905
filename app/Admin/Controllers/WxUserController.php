@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Admin\Controllers;
-
 use App\Model\WxUserModel;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-
 class WxUserController extends AdminController
 {
     /**
@@ -16,7 +13,6 @@ class WxUserController extends AdminController
      * @var string
      */
     protected $title = '微信用户管理';
-
     /**
      * Make a grid builder.
      *
@@ -25,7 +21,6 @@ class WxUserController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new WxUserModel);
-
         $grid->column('uid', __('Uid'));
         $grid->column('openid', __('Openid'));
         $grid->column('subscribe_time', __('关注时间'))->display(function($time){
@@ -46,10 +41,8 @@ class WxUserController extends AdminController
         $grid->column('nickname', __('昵称'));
         //$grid->column('created_at', __('Created at'));
         //$grid->column('updated_at', __('Updated at'));
-
         return $grid;
     }
-
     /**
      * Make a show builder.
      *
@@ -59,7 +52,6 @@ class WxUserController extends AdminController
     protected function detail($id)
     {
         $show = new Show(WxUserModel::findOrFail($id));
-
         $show->field('uid', __('Uid'));
         $show->field('openid', __('Openid'));
         $show->field('subscribe_time', __('Subscribe time'));
@@ -68,10 +60,8 @@ class WxUserController extends AdminController
         $show->field('nickname', __('Nickname'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
-
         return $show;
     }
-
     /**
      * Make a form builder.
      *
@@ -80,14 +70,11 @@ class WxUserController extends AdminController
     protected function form()
     {
         $form = new Form(new WxUserModel);
-
         $form->text('openid', __('Openid'));
         //$form->number('subscribe_time', __('关注时间'));
         //$form->text('headimgurl', __('Headimgurl'));
         //$form->switch('sex', __('Sex'));
         $form->text('nickname', __('Nickname'));
-
         return $form;
     }
-
 }
