@@ -49,7 +49,7 @@ class VoteController extends Controller
     protected function getAccessToken($code)
     {
         $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_APPSECREET').'&code='.$code.'&grant_type=authorization_code';
-        echo $url;
+//        echo $url;
         $json_data = file_get_contents($url);
         return json_decode($json_data,true);
     }
