@@ -86,7 +86,7 @@ class WxController extends Controller
         $openid = $xml_obj->FromUserName;       //获取用户的openid
         if($event=='subscribe'){
             //判断用户是否已存在
-            $u = WeiXinModel::where(['openid'=>$openid])->first();
+            $u = WxUserModel::where(['openid'=>$openid])->first();
             if($u){
                 $msg = '欢迎回来';
                 $xml = '<xml>
@@ -112,7 +112,7 @@ class WxController extends Controller
                     'subscribe_time'    => $u['subscribe_time']
                 ];
                 //openid 入库
-                $uid = WeiXinModel::insertGetId($user_data);
+                $uid = WxUserModel::insertGetId($user_data);
                 $msg = "谢谢关注";
                 //回复用户关注
                 $xml = '<xml>
