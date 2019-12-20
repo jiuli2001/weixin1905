@@ -13,3 +13,4 @@ yarn-error.log
 public/*.log
 .env
 .env.pak
+public/wx_media
