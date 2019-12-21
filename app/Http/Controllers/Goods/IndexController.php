@@ -20,6 +20,6 @@ class IndexController extends Controller
         $data = [
             'goods' => $goods
         ];
-        return view('goods.detail');
+        return view('goods.detail',$data);
     }
 }
