@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Admin\Controllers;
-
 use App\Model\GoodsModel;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-
 class GoodsController extends AdminController
 {
     /**
@@ -15,8 +12,7 @@ class GoodsController extends AdminController
      *
      * @var string
      */
-    protected $title = '商品管理页';
-
+    protected $title = '商品管理';
     /**
      * Make a grid builder.
      *
@@ -25,17 +21,14 @@ class GoodsController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new GoodsModel);
-
         $grid->column('id', __('Id'));
         $grid->column('goods_name', __('Goods name'));
-        $grid->column('img', __('Img'));
+        $grid->column('img', __('Img'))->image();
         $grid->column('price', __('Price'));
-        $grid->column('create_at', __('Create at'));
+        $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-
         return $grid;
     }
-
     /**
      * Make a show builder.
      *
@@ -45,17 +38,14 @@ class GoodsController extends AdminController
     protected function detail($id)
     {
         $show = new Show(GoodsModel::findOrFail($id));
-
         $show->field('id', __('Id'));
         $show->field('goods_name', __('Goods name'));
         $show->field('img', __('Img'));
         $show->field('price', __('Price'));
-        $show->field('create_at', __('Create at'));
+        $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
-
         return $show;
     }
-
     /**
      * Make a form builder.
      *
@@ -64,12 +54,9 @@ class GoodsController extends AdminController
     protected function form()
     {
         $form = new Form(new GoodsModel);
-
         $form->text('goods_name', __('Goods name'));
         $form->image('img', __('Img'));
         $form->number('price', __('Price'));
-        $form->datetime('create_at', __('Create at'))->default(date('Y-m-d H:i:s'));
-
         return $form;
     }
 }

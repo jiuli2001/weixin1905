@@ -12,7 +12,13 @@ class IndexController extends Controller
      * 商品详情页
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function detail(){
+    public function detail(Request $request){
+        $goods_id = $request->input('id');
+        $goods = GoodsModel::find($goods_id);
+        // echo '<pre>';print_r($goods->toArray());echo '</pre>';
+        $data = [
+            'goods' => $goods
+        ];
         return view('goods.detail');
     }
 }
