@@ -16,7 +16,7 @@ class GoodsController extends AdminController
     /**
      * Make a grid builder.
      *
-     * @return Grid
+     * @return Grid、、
      */
     protected function grid()
     {

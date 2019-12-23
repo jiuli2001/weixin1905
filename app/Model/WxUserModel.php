@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redis;
 
 class WxUserModel extends Model
 {
+    //
     protected $table = 'p_wx_users';
     protected $primaryKey = 'uid';
     protected function getAccessToken()

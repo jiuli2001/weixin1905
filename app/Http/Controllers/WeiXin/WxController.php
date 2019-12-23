@@ -305,6 +305,6 @@ class WxController extends Controller
             'body'  => $menu_json
         ]);
         echo '<pre>';print_r($menu);echo '</pre>';
-        echo $response->getBody();      //接收 微信接口的响应数据
+        echo $response->getBody();      //接收 微信接口的响应数据.
     }
 }

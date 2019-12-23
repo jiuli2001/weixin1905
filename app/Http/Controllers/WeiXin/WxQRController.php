@@ -34,7 +34,7 @@ class WxQRController extends Controller
 
         $json1= $response->getBody();
         $tiket =json_decode($json1,true)['ticket'];
-        //第二步 获取带参数的二维码
+        //第二步 获取带参数的二维码.
         $url='https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$tiket;
 
 

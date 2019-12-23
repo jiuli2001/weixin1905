@@ -13,5 +13,5 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('users', WxUserController::class);
     $router->resource('goods', GoodsController::class);
-    $router->get('/wxsendmsg', 'WxMsgController@sendMsg');
+    $router->get('/wxsendmsg', 'WxMsgController@sendMsg');//
 });

@@ -22,7 +22,7 @@ class WxMsgController extends AdminController
     {
         $access_token=WxUserModel::getAccessToken();
         $openid_arr=WxUserModel::select('openid','nickname','sex')->get()->toArray();
-//        echo '<pre>';print_r($openid_arr);echo '</pre>';
+// .       echo '<pre>';print_r($openid_arr);echo '</pre>';
         $openid=array_column($openid_arr,'openid');
         echo '<pre>';print_r($openid);echo '</pre>';
         $url='https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token='.$access_token;
