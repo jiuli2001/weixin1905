@@ -88,7 +88,7 @@ class WxController extends Controller
             //判断用户是否已存在
             $u = WxUserModel::where(['openid'=>$openid])->first();
             if($u){
-                $msg = '欢迎回来';
+                $msg = "欢迎".$u['nickname']."回来";
                 $xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
@@ -126,22 +126,19 @@ class WxController extends Controller
             }
         }elseif($event=='CLICK'){           // 菜单点击事件
             if($xml_obj->EventKey=='weather'){
-                $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
-                $user_info = file_get_contents($url);       //
-                $u = json_decode($user_info,true);
-                //echo '<pre>';print_r($u);echo '</pre>';die;
-                //入库用户信息
-                $user_data = [
-                    'openid'    => $openid,
-                    'nickname'  => $u['nickname'],
-                    'sex'       => $u['sex'],
-                    'headimgurl'    => $u['headimgurl'],
-                    'subscribe_time'    => $u['subscribe_time'],
-                    'jifen' =>'jifen'
-                ];
-                //openid 入库
-                $uid = WxUserModel::insertGetId($user_data);
                 $msg = "签到成功";
+                $response_xml = '<xml>
+  <ToUserName><![CDATA['.$openid.']]></ToUserName>
+  <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
+  <CreateTime>'.time().'</CreateTime>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA['. date('Y-m-d H:i:s') .  $msg .']]></Content>
+</xml>';
+                echo $response_xml;
+            }
+
+            if($xml_obj->EventKey=='weather1'){
+                $msg = "300";
                 $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
