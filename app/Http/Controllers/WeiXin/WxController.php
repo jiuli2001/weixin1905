@@ -126,7 +126,17 @@ class WxController extends Controller
             }
         }elseif($event=='CLICK'){           // 菜单点击事件
             if($xml_obj->EventKey=='weather'){
-                $msg = ' 签到成功';
+
+                $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
+                $user_info = file_get_contents($url);       //
+                $u = json_decode($user_info,true);
+                $user_data = [
+                    'jifen' =>['jifen'],
+                ];
+                $user_data=click(+10);
+                //openid 入库
+                $uid = WxUserModel::insertGetId($user_data);
+                $msg = "签到成功";
                 $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
