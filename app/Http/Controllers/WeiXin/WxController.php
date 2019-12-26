@@ -113,7 +113,7 @@ class WxController extends Controller
                 ];
                 //openid 入库
                 $uid = WxUserModel::insertGetId($user_data);
-                $msg = "谢谢关注";
+                $msg = "谢谢".$u['nickname']."关注";
                 //回复用户关注
                 $xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
@@ -297,7 +297,7 @@ class WxController extends Controller
                 [
                     'type'  => 'click',
                     'name'  => '积分查询',
-                    'key'   => 'weather'
+                    'key'   => 'weather1'
                 ],
                 [
                     'type'  => 'click',
