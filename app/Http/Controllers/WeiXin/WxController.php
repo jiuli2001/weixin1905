@@ -127,17 +127,11 @@ class WxController extends Controller
             }
         }elseif($event=='CLICK'){           // 菜单点击事件
             if($xml_obj->EventKey=='weather'){
-                $jifen=$_GET['jifen'];
-                //openid 入库
-                if($jifen){
-                    $weather_info_arr = json_decode(true);
-                    $cond_txt = $weather_info_arr['HeWeather6'][0]['now']['cond_txt'];
-                    $msg = $cond_txt . ' 签到成功';
-                    $jifen+10;
-                }
-
-
-
+                $jf=$_GET['jifen'];
+                $jf+10;
+                $weather_info_arr = json_decode(true);
+                $cond_txt = $weather_info_arr['HeWeather6'][0]['now']['cond_txt'];
+                $msg = $cond_txt . ' 签到成功';
                 $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
@@ -148,7 +142,6 @@ class WxController extends Controller
                 echo $response_xml;
             }
             if($xml_obj->EventKey=='weather1'){
-
                 $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
