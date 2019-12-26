@@ -26,7 +26,7 @@ class WxMsgController extends AdminController
         $openid=array_column($openid_arr,'openid');
         echo '<pre>';print_r($openid);echo '</pre>';
         $url='https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token='.$access_token;
-        $msg=date('Y-m-d H:i:s').'哈喽小老弟';
+        $msg=date('Y-m-d H:i:s').'尊敬的用户您好，目前公司开展签到送积分兑换活动，详情请进入公众号查看';
         $data=[
             'touser'  => $openid,
             'msgtype' => 'text',
