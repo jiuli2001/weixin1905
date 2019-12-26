@@ -136,15 +136,15 @@ class WxController extends Controller
 </xml>';
                 echo $response_xml;
             }
-        }elseif($event=='CLICK') {
-            if ($xml_obj->EventKey == 'weather1') {
+
+            if($xml_obj->EventKey=='weather1'){
                 $msg = "300";
                 $response_xml = '<xml>
-  <ToUserName><![CDATA[' . $openid . ']]></ToUserName>
-  <FromUserName><![CDATA[' . $xml_obj->ToUserName . ']]></FromUserName>
-  <CreateTime>' . time() . '</CreateTime>
+  <ToUserName><![CDATA['.$openid.']]></ToUserName>
+  <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
+  <CreateTime>'.time().'</CreateTime>
   <MsgType><![CDATA[text]]></MsgType>
-  <Content><![CDATA[' . date('Y-m-d H:i:s') . $msg . ']]></Content>
+  <Content><![CDATA['. date('Y-m-d H:i:s') .  $msg .']]></Content>
 </xml>';
                 echo $response_xml;
             }
