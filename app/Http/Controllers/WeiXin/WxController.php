@@ -130,12 +130,10 @@ class WxController extends Controller
                 $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
                 $user_info = file_get_contents($url);       //
                 $u = json_decode($user_info,true);
-                $user_data = [
-                    'jifen' =>['jifen'],
-                ];
-                $user_data=click(+10);
+                $jifen=$u['jifen'];
+                
                 //openid 入库
-                $uid = WxUserModel::insertGetId($user_data);
+                $uid = WxUserModel::insertGetId($jifen);
                 $msg = "签到成功";
                 $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
