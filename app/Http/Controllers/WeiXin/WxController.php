@@ -134,22 +134,21 @@ class WxController extends Controller
                     $cond_txt = $weather_info_arr['HeWeather6'][0]['now']['cond_txt'];
                     $msg = $cond_txt . ' 签到成功';
                     $jifen+10;
-                    $response_xml = '<xml>
+                }
+
+
+
+                $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
   <CreateTime>'.time().'</CreateTime>
   <MsgType><![CDATA[text]]></MsgType>
   <Content><![CDATA['. date('Y-m-d H:i:s') .  $msg .']]></Content>
 </xml>';
-                }
-
-
-
-
                 echo $response_xml;
             }
             if($xml_obj->EventKey=='weather1'){
-                $jf=WxUserModel::where
+
                 $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
