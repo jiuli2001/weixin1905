@@ -126,11 +126,7 @@ class WxController extends Controller
             }
         }elseif($event=='CLICK'){           // 菜单点击事件
             if($xml_obj->EventKey=='weather'){
-                $jf=$_GET['jifen'];
-                $uid = WxUserModel::insertGetId($jf);
-                $weather_info_arr = json_decode(true);
-                $cond_txt = $weather_info_arr['HeWeather6'][0]['now']['cond_txt'];
-                $msg = $cond_txt . ' 签到成功';
+                $msg = ' 签到成功';
                 $response_xml = '<xml>
   <ToUserName><![CDATA['.$openid.']]></ToUserName>
   <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
